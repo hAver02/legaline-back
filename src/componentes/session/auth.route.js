@@ -58,6 +58,7 @@ async (req, res) => {
         // res.cookie('token', token, { httpOnly: true, sameSite: 'strict', secure: true });
         // res.cookie('token', token, { httpOnly: true, sameSite: 'lax', secure: true, domain: '.hstgr.cloud' });
         // res.cookie('token', token, { httpOnly: true, sameSite: 'lax', secure: true, expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
+        const currentDate = new Date()
         const expirationDate = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000);
 
         res.cookie('token', token, { httpOnly: true, sameSite: 'lax', secure: true, expires : expirationDate });
