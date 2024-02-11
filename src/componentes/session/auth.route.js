@@ -50,7 +50,7 @@ async (req, res) => {
 
         const token = await createTokenJWT(user._id)
 
-        // console.log(token);
+        console.log(token);
         // res.header('Access-Control-Allow-Credentials', true);
         // res.header('Access-Control-Allow-Origin', 'http://srv471383.hstgr.cloud');
 
@@ -59,7 +59,7 @@ async (req, res) => {
         // res.cookie('token', token, { httpOnly: true, sameSite: 'lax', secure: true, domain: '.hstgr.cloud' });
         // res.cookie('token', token, { httpOnly: true, sameSite: 'lax', secure: true, expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
 
-        res.cookie('token', token, { httpOnly: true, sameSite: 'None', secure: true, expires: '24h' });
+        res.cookie('token', token, { httpOnly: true, sameSite: 'lax', secure: true, expires: '24h' });
 
 
 
