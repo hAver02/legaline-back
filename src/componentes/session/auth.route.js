@@ -68,6 +68,7 @@ async (req, res) => {
 
 
     } catch (error) {
+        console.log(error);
         res.json( { ok : false, message : error} )
     }
 })
