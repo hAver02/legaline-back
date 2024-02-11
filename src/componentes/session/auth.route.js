@@ -54,8 +54,9 @@ async (req, res) => {
         res.header('Access-Control-Allow-Credentials', true);
         res.header('Access-Control-Allow-Origin', 'http://srv471383.hstgr.cloud');
 
-        res.cookie('token', token, { httpOnly: true, sameSite: 'lax', secure: true });
+        // res.cookie('token', token, { httpOnly: true, sameSite: 'lax', secure: true });
         // res.cookie('token', token, { httpOnly: true, sameSite: 'strict', secure: true });
+        res.cookie('token', token, { httpOnly: true, sameSite: 'lax', secure: true, domain: '.hstgr.cloud' });
 
 
 
