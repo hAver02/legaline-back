@@ -28,7 +28,7 @@ const PORT = 3000
 app.use(cookieParser())
 
 app.use(cors({
-    origin: ['http://localhost:5173',  "http://srv471383.hstgr.cloud/", "85.31.61.130" ,'*'], // Reemplaza con la URL de tu aplicación cliente
+    origin: ['*'], // Reemplaza con la URL de tu aplicación cliente
     credentials: true,
   }))
 
@@ -53,7 +53,9 @@ app.use(handleError)
 
 const io = new Server(server, {
     cors: {
-        origin : ["http://localhost:5173", "http://srv471383.hstgr.cloud/", "85.31.61.130"]
+        origin : '*',
+        methods : ['GET', 'POST'],
+        credentials : true
     }
 })
 
