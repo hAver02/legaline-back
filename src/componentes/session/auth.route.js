@@ -25,7 +25,7 @@ async (req, res, next) => {
         if(!user) return res.json({ok : false, error : 'error create suser'})
         const token = await createTokenJWT(user.id)
     
-        res.cookie('token', token)
+        res.cookie('token', token, { httpOnly: true, sameSite: 'none', secure: true })
         res.json({ ok : true, userID :  user._id })
     } catch (error) {
         // console.log(error);
@@ -50,7 +50,8 @@ async (req, res) => {
         const token = await createTokenJWT(user._id)
 
         // console.log(token);
-        res.cookie('token', token)
+        res.cookie('token', token, { httpOnly: true, sameSite: 'none', secure: true })
+
 
         res.json({ ok : true, userID : user._id })
 
