@@ -28,7 +28,7 @@ const PORT = 3000
 app.use(cookieParser())
 
 app.use(cors({
-    origin: 'http://srv471383.hstgr.cloud', // Reemplaza con la URL de tu aplicación cliente
+    origin: 'https://srv471383.hstgr.cloud', // Reemplaza con la URL de tu aplicación cliente
     credentials: true,
     methods : ['GET', 'POST', 'DELETE', 'PUT']
   }))
@@ -54,7 +54,7 @@ app.use(handleError)
 
 const io = new Server(server, {
     cors: {
-        origin : 'http://srv471383.hstgr.cloud',
+        origin : 'https://srv471383.hstgr.cloud',
         methods : ['GET', 'POST'],
         credentials : true
     }

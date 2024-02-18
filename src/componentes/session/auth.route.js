@@ -14,7 +14,7 @@ route.post('/register',
     validatorHandler(createUserSchema, 'body'),
 async (req, res, next) => {
     try {
-        console.log('aca mo llega');
+        // console.log('aca mo llega');
         const { email, nombre, password } = req.body
         
         const hashPass = await bycrypt.hash(password, 10)
@@ -25,7 +25,7 @@ async (req, res, next) => {
         if(!user) return res.json({ok : false, error : 'error create suser'})
         const token = await createTokenJWT(user.id)
         res.header('Access-Control-Allow-Credentials', true);
-        res.header('Access-Control-Allow-Origin', 'http://srv471383.hstgr.cloud');
+        res.header('Access-Control-Allow-Origin', 'https://srv471383.hstgr.cloud');
         res.cookie('token', token, { httpOnly: true, sameSite: 'none', secure: true })
         res.json({ ok : true, userID :  user._id })
     } catch (error) {
@@ -52,7 +52,7 @@ async (req, res) => {
 
         console.log(token);
         res.header('Access-Control-Allow-Credentials', true);
-        res.header('Access-Control-Allow-Origin', 'http://srv471383.hstgr.cloud');
+        res.header('Access-Control-Allow-Origin', 'https://srv471383.hstgr.cloud');
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
         // res.cookie('token', token, { httpOnly: true, sameSite: 'lax', secure: true });
         // res.cookie('token', token, { httpOnly: true, sameSite: 'strict', secure: true });
@@ -62,10 +62,6 @@ async (req, res) => {
         const expirationDate = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000);
 
         res.cookie('token', token, { expires : expirationDate, sameSite : 'none', secure: false});
-
-
-
-
         res.json({ ok : true, userID : user._id })
 
 
