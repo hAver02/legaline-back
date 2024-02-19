@@ -1,12 +1,12 @@
-
-
+// const http = require('http')
 const express = require('express');
-const http = require('http')
+const https = require('https')
+const fs = require('node:fs')
+
 const cron = require('node-cron')
 const nodemailer = require('nodemailer')
 const cors = require('cors')
 const { Server } = require('socket.io')
-// const sendAlarmEmail = require('./src/utils/cron')
 const { logError, handleError } = require('./src/middleware/error.handler');
 const  { mongoDBconnection } = require('./src/database/mongo.config')
 const cookieParser = require('cookie-parser');
@@ -20,15 +20,19 @@ const notiRoutes = require('./src/componentes/notificaciones/notificaciones.rout
 const controllerMessage = require('./src/componentes/message/messages.controller');
 
 const app = express()
-const server = http.createServer(app)
+const options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/srv471383.hstgr.cloud/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/srv471383.hstgr.cloud/fullchain.pem'),
+};
 
 
+const server = https.createServer(options, app);
 
 const PORT = 3000
 app.use(cookieParser())
 
 app.use(cors({
-    origin: 'https://srv471383.hstgr.cloud', // Reemplaza con la URL de tu aplicación cliente
+    origin: 'https://srv471383.hstgr.cloud',
     credentials: true,
     methods : ['GET', 'POST', 'DELETE', 'PUT']
   }))
@@ -70,15 +74,6 @@ io.on('connection',  (socket) => {
 
     })
 } )
-
-// app.use('/', (req, res) => {
-//     return res.status(404).json({
-//         ok : false,
-//         message : 'notfound'
-//     })
-// })
-
-
 
 
 
