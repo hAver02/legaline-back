@@ -61,7 +61,7 @@ async (req, res) => {
         const currentDate = new Date()
         const expirationDate = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000);
 
-        res.cookie('token', token, { expires : expirationDate, sameSite : 'none', secure: false});
+        res.cookie('token', token, { expires : expirationDate});
         res.json({ ok : true, userID : user._id })
 
 
